@@ -24,7 +24,7 @@ class Entrada // Tipo de la entrada a leer
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
-	void escanear(std::istream & in = std::cin)
+	void escanear(istream& in = cin)
 	{
 
 	}
@@ -34,7 +34,7 @@ class Solucion // Tipo de la solución a mostrar
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
-	void imprimir(ostream& ost) const
+	void imprimir(ostream& ost = cout) const
 	{
 
 	}
