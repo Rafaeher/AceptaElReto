@@ -1,7 +1,9 @@
 ﻿// GNU GPLv3
 // Rafael Andrés Hernández Roldán
-// rafaeher@ucm.es
-// rafael.ahr96@gmail.com
+//
+// Nick en Acepta el Reto: Rafael
+// Correo: rafaeher@ucm.es
+//         rafael.ahr96@gmail.com
 //
 // Problema XXX de Acepta el Reto:
 // Nombre del Problema
