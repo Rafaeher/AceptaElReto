@@ -26,7 +26,9 @@ class Entrada // Tipo de la entrada a leer
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
-	void escanear(istream& in = cin)
+	bool es_caso; // Solo se utiliza si la entrada no es por número de casos, para indicar si hay que tratar el caso o no
+
+	void escanear(istream& ist = cin)
 	{
 
 	}
@@ -68,7 +70,7 @@ bool resuelveCasoSinNumCasos()
 	// ENTRADA
 	Entrada entrada;
 	cin >> entrada;
-	if (!cin)
+	if (!entrada.es_caso)
 		return false;
 
 	// RESOLUCIÓN
