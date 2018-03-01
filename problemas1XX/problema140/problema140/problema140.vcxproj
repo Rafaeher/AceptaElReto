@@ -118,7 +118,7 @@
     <Text Include="entrada140.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mainXXX.cpp" />
+    <ClCompile Include="main140.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
