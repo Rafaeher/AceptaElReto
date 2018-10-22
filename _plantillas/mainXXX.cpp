@@ -108,8 +108,7 @@ bool resuelveCasoSinNumCasos(DatosPrevios& datos)
 void resuelveCasoNumCasos(DatosPrevios& datos)
 {
 	// ENTRADA
-	Entrada entrada;
-	entrada.datos = datos;
+	Entrada entrada(datos);
 	cin >> entrada;
 
 	// RESOLUCIÓN

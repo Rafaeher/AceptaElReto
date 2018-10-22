@@ -50,7 +50,7 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 	void escanear(istream& ist = cin)
 	{
 		int n;
-		cin >> n;
+		ist >> n;
 
 		es_caso = n != 0;
 
@@ -62,7 +62,7 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 			{
 				for (int c = 0; c < n; c++)
 				{
-					cin >> matriz[f][c];
+					ist >> matriz[f][c];
 				}
 			}
 		}
@@ -79,9 +79,9 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 	{
 		switch (tipo)
 		{
-		case NINGUNO: cout << "NO"; break;
-		case DIABOLICO: cout << "DIABOLICO"; break;
-		case ESOTERICO: cout << "ESOTERICO"; break;
+		case NINGUNO: ost << "NO"; break;
+		case DIABOLICO: ost << "DIABOLICO"; break;
+		case ESOTERICO: ost << "ESOTERICO"; break;
 		}
 	}
 };
