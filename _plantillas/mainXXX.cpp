@@ -22,11 +22,26 @@ const bool QUIERO_TESTEAR = true; // Poner a false para enviar a Acepta el Reto
 const bool ENTRADA_CON_NUMERO_DE_CASOS = true; // true para entrada con número de casos, false para entrada ilimitada o con centinela
 const string FICHERO_ENTRADA = "entradaXXX.txt"; // El nombre del fichero de entrada
 
+class DatosPrevios // Información previa a la entrada del problema
+{
+public: // Los atributos y operaciones son todos públicos por comodidad
+
+	void escanear(istream& ist = cin)
+	{
+
+	}
+};
+
 class Entrada // Tipo de la entrada a leer
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
 	bool es_caso; // Solo se utiliza si la entrada no es por número de casos, para indicar si hay que tratar el caso o no
+
+	Entrada(DatosPrevios& datos)
+	{
+
+	}
 
 	void escanear(istream& ist = cin)
 	{
@@ -44,6 +59,19 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 	}
 };
 
+// Resolución del problema
+Solucion resolver(const Entrada& entrada)
+{
+
+}
+
+// Lectura de datos previos al resto de la entrada
+inline istream& operator>>(istream& ist, DatosPrevios& datos)
+{
+	datos.escanear(ist);
+	return ist;
+}
+
 // Lectura de la entrada
 inline istream& operator>>(istream& ist, Entrada& entrada)
 {
@@ -58,17 +86,11 @@ inline ostream& operator<<(ostream& ost, const Solucion& solucion)
 	return ost;
 }
 
-// Resolución del problema
-Solucion resolver(const Entrada& entrada)
-{
-
-}
-
 // Resolución de un caso con entrada sin número de casos
-bool resuelveCasoSinNumCasos()
+bool resuelveCasoSinNumCasos(DatosPrevios& datos)
 {
 	// ENTRADA
-	Entrada entrada;
+	Entrada entrada(datos);
 	cin >> entrada;
 	if (!entrada.es_caso)
 		return false;
@@ -83,10 +105,11 @@ bool resuelveCasoSinNumCasos()
 }
 
 // Resolución de un caso con entrada con número de casos
-void resuelveCasoNumCasos()
+void resuelveCasoNumCasos(DatosPrevios& datos)
 {
 	// ENTRADA
 	Entrada entrada;
+	entrada.datos = datos;
 	cin >> entrada;
 
 	// RESOLUCIÓN
@@ -98,25 +121,28 @@ void resuelveCasoNumCasos()
 
 void mainReal()
 {
+	DatosPrevios datos;
+	cin >> datos;
+
 	if (ENTRADA_CON_NUMERO_DE_CASOS)
 	{
 		size_t numCasos;
 		cin >> numCasos;
 		for (size_t i = 0; i < numCasos; i++)
-			resuelveCasoNumCasos();
+			resuelveCasoNumCasos(datos);
 	}
 	else
-		while (resuelveCasoSinNumCasos());
+		while (resuelveCasoSinNumCasos(datos));
 }
 
 void testMain()
 {
-	std::ifstream ifs(FICHERO_ENTRADA);
-	auto cinbuf = std::cin.rdbuf(ifs.rdbuf());
+	ifstream ifs(FICHERO_ENTRADA);
+	auto cinbuf = cin.rdbuf(ifs.rdbuf());
 
 	mainReal();
 
-	std::cin.rdbuf(cinbuf);
+	cin.rdbuf(cinbuf);
 	system("pause");
 }
 
