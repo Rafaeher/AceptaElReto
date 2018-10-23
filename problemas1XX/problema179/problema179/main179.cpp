@@ -10,7 +10,7 @@
 //
 // Coste en tiempo: O(m · c), con m = número de molinos y c = número de consultas
 //
-// Coste en espacio adicional: O(n), con m = número de molinos
+// Coste en espacio adicional: O(k), con k constante
 //
 
 #include <iostream>
@@ -21,8 +21,8 @@ using namespace std;
 
 int main()
 {
-	//ifstream ifs("entrada179.txt");
-	//auto cinbuf = cin.rdbuf(ifs.rdbuf());
+	ifstream ifs("entrada179.txt");
+	auto cinbuf = cin.rdbuf(ifs.rdbuf());
 
 	size_t n;
 	cin >> n;
@@ -31,7 +31,7 @@ int main()
 	{
 		vector<size_t> molinos(n);
 
-		for (int i = 0; i < n; i++)
+		for (size_t i = 0; i < n; i++)
 		{
 			cin >> molinos[i];
 		}
@@ -56,8 +56,8 @@ int main()
 		cin >> n;
 	}
 
-	//cin.rdbuf(cinbuf);
-	//system("pause");
+	cin.rdbuf(cinbuf);
+	system("pause");
 
 	return 0;
 }
@@ -76,12 +76,12 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 	void escanear(istream& ist = cin)
 	{
 		int numMolinos;
-		cin >> numMolinos;
+		ist >> numMolinos;
 		molinos.resize(numMolinos);
 
 		for (int i = 0; i < numMolinos; ++i)
 		{
-			cin >> molinos[i];
+			ist >> molinos[i];
 		}
 	}
 };
@@ -102,7 +102,7 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 
 	void escanear(istream& ist = cin)
 	{
-		cin >> ini >> fin;
+		ist >> ini >> fin;
 	}
 };
 
@@ -114,7 +114,7 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 
 	void imprimir(ostream& ost = cout) const
 	{
-		cout << resultado;
+		ost << resultado;
 	}
 };
 

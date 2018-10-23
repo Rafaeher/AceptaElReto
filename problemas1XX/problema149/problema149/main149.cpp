@@ -10,7 +10,7 @@
 //
 // Coste en tiempo: O(n), con n = número de toros
 //
-// Coste en espacio adicional: O(1)
+// Coste en espacio adicional: O(k), con k constante
 //
 
 #include <iostream>

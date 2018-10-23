@@ -10,7 +10,7 @@
 //
 // Coste en tiempo: O(i), con i = número de ingredientes entre todos los potitos
 //
-// Coste en espacio adicional: O(i)
+// Coste en espacio adicional: O(k), con k constante
 //
 
 #include <iostream>

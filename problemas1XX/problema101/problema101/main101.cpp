@@ -10,7 +10,7 @@
 //
 // Coste en tiempo: O(n * n), con n = dimensión de la matriz cuadrada
 //
-// Coste en espacio adicional: O(2 * n * n), con n = dimensión de la matriz cuadrada
+// Coste en espacio adicional: O(1)
 //
 
 #include <iostream>
