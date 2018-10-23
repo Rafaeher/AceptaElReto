@@ -21,7 +21,7 @@
 
 using namespace std;
 
-const bool QUIERO_TESTEAR = true; // Poner a false para enviar a Acepta el Reto
+const bool QUIERO_TESTEAR = false; // Poner a false para enviar a Acepta el Reto
 const bool ENTRADA_CON_NUMERO_DE_CASOS = true; // true para entrada con número de casos, false para entrada ilimitada o con centinela
 const string FICHERO_ENTRADA = "entrada196.txt"; // El nombre del fichero de entrada
 
@@ -109,16 +109,16 @@ Solucion resolver(const Entrada& entrada)
 		}
 	}
 
-	solucion.es_buen_sudoku = rellenas == NUM_BUENOS_DIGITOS;
+	solucion.es_buen_sudoku = rellenas <= NUM_BUENOS_DIGITOS;
 
 	if (!solucion.es_buen_sudoku)
 	{
 		return solucion;
 	}
 	
-	for (size_t f = 0; f < DIM_SUDOKU - 1; ++f)
+	for (size_t f = 0; f <= DIM_SUDOKU / 2; ++f)
 	{
-		for (size_t c = 0; c < DIM_SUDOKU - 1 - f; ++c)
+		for (size_t c = 0; c < DIM_SUDOKU; ++c)
 		{
 			solucion.es_buen_sudoku = entrada.sudoku[f][c] == entrada.sudoku[DIM_SUDOKU - 1 - f][DIM_SUDOKU - 1 - c];
 
