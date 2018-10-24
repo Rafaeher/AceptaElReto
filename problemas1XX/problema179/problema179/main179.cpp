@@ -8,7 +8,7 @@
 // Problema 179 de Acepta el Reto:
 // Molinos de viento
 //
-// Coste en tiempo: O(m · c), con m = número de molinos y c = número de consultas
+// Coste en tiempo: O(c), con c = número de consultas
 //
 // Coste en espacio adicional: O(k), con k constante
 //
@@ -19,51 +19,7 @@
 
 using namespace std;
 
-int main()
-{
-	ifstream ifs("entrada179.txt");
-	auto cinbuf = cin.rdbuf(ifs.rdbuf());
-
-	size_t n;
-	cin >> n;
-
-	while (n != 0)
-	{
-		vector<size_t> molinos(n);
-
-		for (size_t i = 0; i < n; i++)
-		{
-			cin >> molinos[i];
-		}
-
-		size_t numConsultas;
-		cin >> numConsultas;
-
-		size_t ini, fin;
-
-		for (size_t j = 0; j < numConsultas; ++j)
-		{
-			cin >> ini >> fin;
-			size_t suma = 0;
-			for (size_t i = ini - 1; i <= fin - 1; ++i)
-			{
-				suma += molinos[i];
-			}
-
-			cout << suma << '\n';
-		}
-
-		cin >> n;
-	}
-
-	cin.rdbuf(cinbuf);
-	system("pause");
-
-	return 0;
-}
-
-/*
-const bool QUIERO_TESTEAR = false; // Poner a false para enviar a Acepta el Reto
+const bool QUIERO_TESTEAR = true; // Poner a false para enviar a Acepta el Reto
 const bool ENTRADA_CON_NUMERO_DE_CASOS = true; // true para entrada con número de casos, false para entrada ilimitada o con centinela
 const string FICHERO_ENTRADA = "entrada179.txt"; // El nombre del fichero de entrada
 
@@ -75,11 +31,11 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 
 	void escanear(istream& ist = cin)
 	{
-		int numMolinos;
+		size_t numMolinos;
 		ist >> numMolinos;
 		molinos.resize(numMolinos);
 
-		for (int i = 0; i < numMolinos; ++i)
+		for (size_t i = 0; i < numMolinos; ++i)
 		{
 			ist >> molinos[i];
 		}
@@ -224,4 +180,3 @@ int main()
 
 	return 0;
 }
-*/
