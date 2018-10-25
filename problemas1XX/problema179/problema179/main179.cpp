@@ -16,29 +16,21 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
-const bool QUIERO_TESTEAR = true; // Poner a false para enviar a Acepta el Reto
-const bool ENTRADA_CON_NUMERO_DE_CASOS = true; // true para entrada con número de casos, false para entrada ilimitada o con centinela
+const bool QUIERO_TESTEAR = false; // Poner a false para enviar a Acepta el Reto
+const bool ENTRADA_CON_NUMERO_DE_CASOS = false; // true para entrada con número de casos, false para entrada ilimitada o con centinela
 const string FICHERO_ENTRADA = "entrada179.txt"; // El nombre del fichero de entrada
 
 class DatosPrevios // Información previa a la entrada del problema
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
-	vector<int> molinos;
-
 	void escanear(istream& ist = cin)
 	{
-		size_t numMolinos;
-		ist >> numMolinos;
-		molinos.resize(numMolinos);
 
-		for (size_t i = 0; i < numMolinos; ++i)
-		{
-			ist >> molinos[i];
-		}
 	}
 };
 
@@ -48,17 +40,31 @@ public: // Los atributos y operaciones son todos públicos por comodidad
 
 	bool es_caso; // Solo se utiliza si la entrada no es por número de casos, para indicar si hay que tratar el caso o no
 	DatosPrevios datos;
-	size_t ini;
-	size_t fin;
+	vector<size_t> molinos;
 
 	Entrada(DatosPrevios& _datos)
 	{
-		datos = _datos;
+
 	}
 
 	void escanear(istream& ist = cin)
 	{
-		ist >> ini >> fin;
+		size_t numMolinos;
+		size_t numConsultas;
+
+		ist >> numMolinos;
+
+		es_caso = numMolinos != 0;
+
+		if (es_caso)
+		{
+			molinos = vector<size_t>(numMolinos + 1, 0);
+
+			for (size_t i = 1; i < molinos.size(); ++i)
+			{
+				ist >> molinos[i];
+			}
+		}
 	}
 };
 
@@ -66,23 +72,44 @@ class Solucion // Tipo de la solución a mostrar
 {
 public: // Los atributos y operaciones son todos públicos por comodidad
 
-	int resultado;
+	vector<size_t> resultados;
 
 	void imprimir(ostream& ost = cout) const
 	{
-		ost << resultado;
+		for (size_t i = 0; i < resultados.size() - 1; ++i)
+		{
+			ost << resultados[i] << '\n';
+		}
+
+		ost << resultados[resultados.size() - 1];
 	}
 };
 
+void calcularSumasParciales(vector<size_t>& vect)
+{
+	for (size_t i = 1; i < vect.size(); ++i)
+	{
+		vect[i] += vect[i - 1];
+	}
+}
+
 // Resolución del problema
-Solucion resolver(const Entrada& entrada)
+Solucion resolver(Entrada& entrada)
 {
 	Solucion solucion;
-	solucion.resultado = 0;
+	size_t numConsultas;
 
-	for (size_t i = entrada.ini - 1; i <= entrada.fin - 1; ++i)
+	cin >> numConsultas;
+	calcularSumasParciales(entrada.molinos);
+
+	for (size_t i = 0; i < numConsultas; ++i)
 	{
-		solucion.resultado += entrada.datos.molinos[i];
+		size_t ini, fin;
+		size_t resultado;
+
+		cin >> ini >> fin;
+		resultado = entrada.molinos[fin] - entrada.molinos[ini - 1];
+		solucion.resultados.push_back(resultado);
 	}
 
 	return solucion;
